@@ -15,3 +15,10 @@ The general idea of the default code is to just choose the first turker translat
 ```
 python default-evaluation.py > default.out
 ```
+
+##Evaluating BLEU Score
+BLEU is used to evaluate the success of the system. 
+
+```
+python compute-bleu < default.out
+```
