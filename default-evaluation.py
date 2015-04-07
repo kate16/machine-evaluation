@@ -1,7 +1,7 @@
 import sys
 
 turker_translations = [pair.strip().split('\t') for pair in open("student-data/turker_translations.tsv")]
-ref_translations = [pair.strip().split('\t') for pair in open("student-data/first500references.tsv")]
+ref_translations = [pair.strip() for pair in open("student-data/all_first_ref_trans.tsv")]
 
 # the first value of each array contains the column names
 turk_titles = turker_translations[0]
@@ -12,20 +12,17 @@ turker_translations = turker_translations[1:len(turker_translations)]
 ref_translations = ref_translations[1:len(ref_translations)]
 
 
-for i in range(0,len(turker_translations)):
+for i in range(0,10):
     # an array of the four turker translations
     options = turker_translations[i]
-
-    # students get the first 499 reference translations
-    if (i < 499):
-        # an array of the four ref translations
-        references = ref_translations[i]
-
-    best = ''
+    # A string consisting of a professional translation
+    reference = ref_translations[i]
+    # A list of translations from best to worst 
+    ordered_best = []
+    
     # iterate through each turker translation for the sentence
     for option in options:
-        # for the baseline we just choose the first translation
-        best = option;
-        break;
-    
-    sys.stdout.write("%s\n" % best)
+        # for the baseline we just choose the initial ordering
+        ordered_best.append(option);
+
+    sys.stdout.write("%s\n" % "\t".join(ordered_best))
