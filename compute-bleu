@@ -13,19 +13,37 @@ optparser.add_option("-r", "--reference", dest="reference", default="student-dat
 #ref = [line.split("\t") for line in open(opts.reference)]
 ref = []
 hyp = []
-for line in open(opts.reference) :
-	fragments = line.split("\t") 
-	for translation in fragments : 
-		ref.append(translation.lower().strip())
 
-hyp = [line.strip() for line in sys.stdin]
-for line in sys.stdin :
+ref_corpus = [pair.strip() for pair in open("student-data/all_first_ref_trans.tsv")]
+
+ref_corpus = ref_corpus[1:len(ref_corpus)]
+
+for line in ref_corpus :
+	ref.append(line.lower().strip())
+	ref.append(line.lower().strip())
+	ref.append(line.lower().strip())
+	ref.append(line.lower().strip())
+
+hyp1 = [line.strip() for line in sys.stdin]
+for line in hyp1 :
+	index = 1
 	translations = line.split("\t")
 	for translation in translations:
+		translation += (" " + str(index))
 		hyp.append(translation.lower().strip())
+		if (index == 1) :
+			index = 2
+		elif (index == 2) :
+			index = 3
+		elif (index == 3) :
+			index = 4
+		elif (index == 4) :
+			index = 1
 
+index = 1
 stats = [0 for i in xrange(10)]
 for (r,h) in zip(ref, hyp):
-  stats = [sum(scores) for scores in zip(stats, bleu.bleu_stats(h,r))]
+	stat = zip(stats, bleu.bleu_stats(h,r))
+	stats = [sum(scores) for scores in zip(stats, bleu.bleu_stats(h,r))]
 print bleu.bleu(stats)
 
