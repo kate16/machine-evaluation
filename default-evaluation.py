@@ -12,7 +12,7 @@ turker_translations = turker_translations[1:len(turker_translations)]
 ref_translations = ref_translations[1:len(ref_translations)]
 
 
-for i in range(0,10):
+for i in range(0,len(turker_translations)):
     # an array of the four turker translations
     options = turker_translations[i]
     # A string consisting of a professional translation
