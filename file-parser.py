@@ -8,7 +8,7 @@ all_data = [pair.strip().split('\t') for pair in open("all-data/translations.tsv
 # keep column names
 titles = all_data[0]
 # strip column names from the data
-all_data = all_data[1:len(all_data)]
+#all_data = all_data[1:len(all_data)]
 
 for line in all_data:
     # The three reference translations
@@ -16,4 +16,4 @@ for line in all_data:
     # The four worker translations
     turk_translations = line[6:10]
     # Print out the important section
-    sys.stdout.write("%s\n" % '\t'.join(turk_translations))
+    sys.stdout.write("%s\n" % ref_translations[0])
