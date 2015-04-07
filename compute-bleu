@@ -7,7 +7,7 @@ import sys
 import bleu
 
 optparser = optparse.OptionParser()
-optparser.add_option("-r", "--reference", dest="reference", default="student-data/first500references.tsv", help="Target language reference sentences")
+optparser.add_option("-r", "--reference", dest="reference", default="student-data/all_first_ref_trans.tsv", help="Target language reference sentences")
 (opts,_) = optparser.parse_args()
 
 #ref = [line.split("\t") for line in open(opts.reference)]
@@ -16,13 +16,13 @@ hyp = []
 for line in open(opts.reference) :
 	fragments = line.split("\t") 
 	for translation in fragments : 
-		ref.append(translation.strip())
+		ref.append(translation.lower().strip())
 
 hyp = [line.strip() for line in sys.stdin]
 for line in sys.stdin :
 	translations = line.split("\t")
 	for translation in translations:
-		hyp.append(translation.strip())
+		hyp.append(translation.lower().strip())
 
 stats = [0 for i in xrange(10)]
 for (r,h) in zip(ref, hyp):
