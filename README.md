@@ -28,5 +28,8 @@ Basic Levenshtein distance is used for the baseline
 ./grade < default.out
 ./grade < baseline.out
 ```
+Outputs:
+
 Default: 0.504553379917
+
 Baseline: 0.559288026529
