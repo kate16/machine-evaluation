@@ -38,8 +38,8 @@ for i in range(0,len(turker_translations)):
     # Temp function that takes in a sentence and compares it to ref
     # *needed to use sorted with key correctly*
     def lev_temp(a):
-        levenshtein_distance(reference,a)
+        return levenshtein_distance(reference,a)
     # Sort options based on Levenshtein distance
     sorted_trans = sorted(options, key=lev_temp)
     # Print out the sorted list
-    sys.stdout.write("%s\n" % "\t".join(options))
+    sys.stdout.write("%s\n" % "\t".join(sorted_trans))
