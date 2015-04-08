@@ -13,12 +13,23 @@ default-evaluation.py provides skeleton code for students and implements the def
 The general idea of the default code is to just choose the first turker translation for each line regardless of quality.
     
 ```
-python default-evaluation.py > default.out
+./default-evaluation.py > default.out
 ```
 
-##Evaluating BLEU Score
-BLEU is used to evaluate the success of the system. 
+## Running Baseline Code
+Basic Levenshtein distance is used for the baseline
+```
+./baseline-solution.py > baseline.out
+```
+
+##Evaluation
 
 ```
-python compute-bleu < default.out
+./grade < default.out
+./grade < baseline.out
 ```
+Outputs:
+
+Default: 0.504553379917
+
+Baseline: 0.559288026529
