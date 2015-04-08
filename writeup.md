@@ -20,7 +20,7 @@ See below for a collection of resources that we used to come up with our ideas f
 ## Objective Function & Default ##
 See below for brief descriptions of our scoring function and default implementation.
 #### Objective Function (Grading) ####
-TBD
+Our grading is very similar to sentence level BLEU - # of similar ngrams are counted and then weigthed based on the size of the ngram.
 #### Default ####
 Orders the translations in the way that they were recieved. This way the output is replicable.
 #### Baseline ####
