@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+# adapted from compute-bleu script by Adam Lopez
+
+import optparse
+import sys
+import bleu
+
+optparser = optparse.OptionParser()
+optparser.add_option("-r", "--reference", dest="reference", default="student-data/all_first_ref_trans.tsv", help="Target language reference sentences")
+(opts,_) = optparser.parse_args()
+
+#ref = [line.split("\t") for line in open(opts.reference)]
+
+
+ref_corpus = [line.strip() for line in open("student-data/all_first_ref_trans.tsv")]
+
+ref_corpus = ref_corpus[1:len(ref_corpus)]
+
+hyp1 = [line.strip() for line in sys.stdin]
+
+for i in range(0,len(hyp1)):
+        line = hyp1[i]
+        ref = ref_corpus[i].split(" ")
+	translations = line.split("\t")
+	for i in range(0,len(translations)):
+                translation = translations[i]
+                print " ".join(ref) + " -> " + translation
+                trans = translation.split(" ")
+                trans_stats = [0 for i in xrange(10)]
+                trans_stats = [sum(scores) for scores in zip(trans_stats, bleu.bleu_stats(trans,ref))]
+                trans_bleu = bleu.bleu(trans_stats)
+                weighted_bleu = trans_bleu / i
+                print trans_bleu
+                print weighted_bleu
+                
