@@ -1,0 +1,3 @@
+##Kate's Extension over baseline
+
+For my extension, I used sentence-level BLEU scores to rank the hypothesis Turker translations, comparing them against the first reference translation. We selected BLEU as one of the baseline extensions because we wanted a system that would correspond closely with human fluency, which BLEU is effective for. This metric was meant to replace the Levenshtein Distance metric used in the baseline, but was found to be about as effective. The Levenshtein baseline achieved a score of 0.559288026529, while the sentence-level BLEU achieved a score of 0.557458581711. 

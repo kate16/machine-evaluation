@@ -33,3 +33,16 @@ Outputs:
 Default: 0.504553379917
 
 Baseline: 0.559288026529
+
+
+##Final Project Extensions
+
+Extension 1: Luke Carlson
+For my extension I implemented a stemming method to complement the Levenshtein distance method. Without stemming, small differences between translations can seem much more drastic. For example the Levenshtein distance between "I began to run quickly" and "I began running quick" is 8. If we stem both sentences to "I began to run quick" and "I began run quick" the distance drops to 3. Stemming then helps us distinguish between different word choices and just different tenses.
+
+Extension 2: Kate Miller
+For my extension, I used sentence-level BLEU scores to rank the hypothesis Turker translations, comparing them against the first reference translation. We selected BLEU as one of the baseline extensions because we wanted a system that would correspond closely with human fluency, which BLEU is effective for. This metric was meant to replace the Levenshtein Distance metric used in the baseline, but was found to be about as effective. The Levenshtein baseline achieved a score of 0.559288026529, while the sentence-level BLEU achieved a score of 0.557458581711. 
+
+To run extension-2.py, 
+```
+python extension-2.py > ext2.out
