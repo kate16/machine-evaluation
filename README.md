@@ -5,18 +5,21 @@
 
 `file-parser.py` was used to create the files in student-data/
 
-`default-evaluation.py` provides skeleton code for students and implements the default score for the assignment
+`default` provides skeleton code for students and implements the default score for the assignment
+
+`baseline` uses Levenshtein distance to rank translations. Its output is the baseline score
+
 
 ## Running Default Code
 The default system ranks the translations in order
 ```
-./default-evaluation.py > default.out   # create default output
+./default > default.out   # create default output
 ```
 
 ## Running Baseline Code
 The baseline system uses Levenshtein Distance to rank the translations
 ```
-./baseline-solution.py > baseline.out   # create baseline output
+./baseline-solution > baseline.out   # create baseline output
 ```
 
 ##Evaluation
@@ -34,7 +37,7 @@ For my extension I implemented a stemming method to complement the Levenshtein d
 To run/grade this extension:
 ```
 ./extension-luke > luke.out   # create output
-./grade < luke.out            # score =
+./grade < luke.out            # score = 0.559627531483
 ```
 
 ####Extension 2: Kate Miller
