@@ -35,7 +35,7 @@ def levenshtein_distance(s1,s2):
 # given a string of words, returns a space separated string with all values stemmed
 def stem_to_s(s):
     sub_h = s.split(" ")
-    stemmer = PorterStemmer() 
+    stemmer = PorterStemmer()
     stemmed = []
     for x in sub_h:
         try:
@@ -51,13 +51,15 @@ for i in range(0,len(turker_translations)):
     # A string consisting of a professional translation
     reference = ref_translations[i]
     stemmed_ref = stem_to_s(reference)
-    
+
     # Temp function that takes in a sentence, stems it, and compares it to stemmed ref
     # *needed to use sorted with key correctly*
     def lev_temp(a):
         return levenshtein_distance(stemmed_ref,stem_to_s(a))
-    
+
     # Sort options based on Levenshtein distance
     sorted_trans = sorted(options, key=lev_temp)
     # Print out the sorted list
+    print(*list, sep='\t')
+
     sys.stdout.write("%s\n" % "\t".join(sorted_trans))
