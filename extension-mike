@@ -3,8 +3,8 @@ import sys
 import bleu
 import operator
 
-turker_translations = [pair.strip().split('\t') for pair in open("student-data/turker_translations.tsv")]
-ref_translations = [pair.strip() for pair in open("student-data/all_first_ref_trans.tsv")]
+turker_translations = [pair.strip().split('\t') for pair in open("data/turker_translations.tsv")]
+ref_translations = [pair.strip() for pair in open("data/all_first_ref_trans.tsv")]
 
 min_length = 1  # min length of n-gram
 max_length = 10  # max length of n-gram

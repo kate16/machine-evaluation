@@ -3,8 +3,8 @@ import sys
 import bleu
 import operator
 
-turker_translations = [pair.strip().split('\t') for pair in open("student-data/turker_translations.tsv")]
-ref_translations = [pair.strip() for pair in open("student-data/all_first_ref_trans.tsv")]
+turker_translations = [pair.strip().split('\t') for pair in open("data/turker_translations.tsv")]
+ref_translations = [pair.strip() for pair in open("data/all_first_ref_trans.tsv")]
 
 # the first value of each array contains the column names
 turk_titles = turker_translations[0]

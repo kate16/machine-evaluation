@@ -7,13 +7,13 @@ import sys
 import bleu
 
 optparser = optparse.OptionParser()
-optparser.add_option("-r", "--reference", dest="reference", default="student-data/all_first_ref_trans.tsv", help="Target language reference sentences")
+optparser.add_option("-r", "--reference", dest="reference", default="data/all_first_ref_trans.tsv", help="Target language reference sentences")
 (opts,_) = optparser.parse_args()
 
 #ref = [line.split("\t") for line in open(opts.reference)]
 
 
-ref_corpus = [line.strip() for line in open("student-data/all_first_ref_trans.tsv")]
+ref_corpus = [line.strip() for line in open("data/all_first_ref_trans.tsv")]
 
 ref_corpus = ref_corpus[1:len(ref_corpus)]
 

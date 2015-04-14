@@ -4,7 +4,7 @@ import sys
 # from the translations.tsv file
 #
 
-all_data = [pair.strip().split('\t') for pair in open("all-data/translations.tsv")]
+all_data = [pair.strip().split('\t') for pair in open("test-data/translations.tsv")]
 # keep column names
 titles = all_data[0]
 # strip column names from the data
