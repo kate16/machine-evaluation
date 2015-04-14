@@ -19,7 +19,7 @@ ref_corpus = ref_corpus[1:len(ref_corpus)]
 
 hyp1 = [line.strip() for line in sys.stdin]
 
-# given a list of words returns ngrams 
+# given a list of words returns ngrams
 def find_ngrams(input_list, n):
   return zip(*[input_list[i:] for i in range(n)])
 
@@ -35,7 +35,7 @@ for i in range(0,len(hyp1)):
 
         # update best score
         total_ref_score += len(ref_uni) * 1 + len(ref_bi) * 1.25 + len(ref_tri) * 1.5
-        
+
 	translations = line.split("\t")
 
         # user score for the line
