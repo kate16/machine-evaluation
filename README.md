@@ -22,12 +22,9 @@ The baseline system uses Levenshtein Distance to rank the translations
 ##Evaluation
 Grading the output files by comparing their ordering to that of an output file based on BLEU-ranked translations with access to the entire reference corpus
 ```
-./grade < default.out
-./grade < baseline.out
+./grade < default.out   # score = 0.504553379917
+./grade < baseline.out  # score = 0.559288026529
 ```
-Default Score: 0.504553379917
-
-Baseline Score: 0.559288026529
 
 ##Final Project Extensions
 
