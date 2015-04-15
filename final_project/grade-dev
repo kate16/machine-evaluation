@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+
+# adapted from compute-bleu script by Adam Lopez
+
+import optparse
+import sys
+import bleu
+
+optparser = optparse.OptionParser()
+optparser.add_option("-r", "--reference", dest="reference", default="data-dev/all_first_ref_trans.tsv", help="Target language reference sentences")
+(opts,_) = optparser.parse_args()
+
+#ref = [line.split("\t") for line in open(opts.reference)]
+
+
+ref_corpus = [line.strip() for line in open("data-dev/all_first_ref_trans.tsv")]
+
+ref_corpus = ref_corpus[1:len(ref_corpus)]
+
+hyp1 = [line.strip() for line in sys.stdin]
+
+# given a list of words returns ngrams
+def find_ngrams(input_list, n):
+  return zip(*[input_list[i:] for i in range(n)])
+
+total_trans_score = 0.0
+total_ref_score = 0.0 # best possible score (not completely attainable due to weighting)
+
+for i in range(0,len(hyp1)):
+        line = hyp1[i]
+        ref = ref_corpus[i].split(" ")
+        ref_uni = find_ngrams(ref,1)
+        ref_bi = find_ngrams(ref,2)
+        ref_tri = find_ngrams(ref,3)
+
+        # update best score
+        total_ref_score += len(ref_uni) * 1 + len(ref_bi) * 1.25 + len(ref_tri) * 1.5
+
+	translations = line.split("\t")
+
+        # user score for the line
+        line_score = 0.0
+
+	for i in range(0,len(translations)):
+                translation = translations[i]
+                trans = translation.split(" ")
+                trans_uni = find_ngrams(trans,1)
+                trans_bi = find_ngrams(trans,2)
+                trans_tri = find_ngrams(trans,3)
+
+                # compute number of similar ngrams
+                num_uni = 0
+                for uni in trans_uni:
+                        if uni in ref_uni:
+                                num_uni+=1;
+                num_bi = 0
+                for bi in trans_bi:
+                        if bi in ref_bi:
+                                num_bi+=1;
+
+                num_tri = 0
+                for tri in trans_tri:
+                        if tri in ref_tri:
+                                num_tri+=1;
+
+                trans_score = (num_uni * 1 + num_bi * 1.25 + num_tri * 1.5)  # weigh ngram value
+                trans_score =  trans_score / (i+1) #then factoring in choice number
+                line_score += trans_score
+
+        # add line score to total score
+        total_trans_score += line_score
+
+sys.stdout.write(str(total_trans_score/total_ref_score) + "\n")
+

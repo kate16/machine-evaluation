@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+import sys
+import bleu
+import operator
+
+# Mike's Extension
+
+turker_translations = [pair.strip().split('\t') for pair in open("data-dev/turker_translations.tsv")]
+ref_translations = [pair.strip() for pair in open("data-dev/all_first_ref_trans.tsv")]
+
+min_length = 1  # min length of n-gram
+max_length = 10  # max length of n-gram
+
+ref_ngrams = set()
+
+# build up n-grams from reference sentences
+for i in range(0,len(ref_translations)):
+
+    # reference translation
+    reference = ref_translations[i].split()
+
+    # for every n-gram length
+    for l in range(min_length, max_length):
+
+      total_grams = len(reference) - l + 1
+
+      # for every gram in the sentence
+      for i in range(0, total_grams):
+        n_gram = []
+
+        # assemble the gram
+        for j in range(0, l):
+          if (j < l):
+            n_gram.append(reference[i + j])
+
+        # add it to the ref_ngrams set
+        ref_ngrams.add(tuple(n_gram))
+
+# calculate the n-gram scores for each reference translation
+for i in range(1, len(turker_translations)):
+
+  # turker translations
+  options = turker_translations[i]
+  option_scores = []
+
+  for o in options:
+
+    turker_trans = o.split()
+    trans_score = 0
+
+    # for every n-gram length
+    for l in range(min_length, max_length):
+      total_grams = len(turker_trans) - l + 1
+
+      # for every gram in the sentence
+      for i in range(0, total_grams):
+        t_gram = []
+
+        # assemble the gram
+        for j in range(0, l):
+          if (j < l):
+            t_gram.append(turker_trans[i + j])
+
+        if tuple(t_gram) in ref_ngrams:
+          trans_score = trans_score + 1
+
+    option_scores.append((trans_score, turker_trans))
+    sorted_trans = [' '.join(x[1]) for x in sorted(option_scores, reverse=True)]
+
+  print("%s" % "\t".join(sorted_trans))
+
+
+
+
+
+
+
+
+
+
