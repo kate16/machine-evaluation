@@ -32,8 +32,8 @@ Grading the output files by comparing their ordering to that of an output file b
 
 ## Markdown Files
 
-`readme.md` file describing the basics of
+`readme.md` file describing the basics of our project & how to run it
 
-`report.md` final version of our writeup
+`report.md` final version of the writeup
 
 `extensions.md` file describing the extensions implemented and their performance
