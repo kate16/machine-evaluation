@@ -29,3 +29,11 @@ Grading the output files by comparing their ordering to that of an output file b
 ./grade < default.out   # score (grade-dev) = 0.504553379917
 ./grade < baseline.out  # score (grade-dev) = 0.559288026529
 ```
+
+## Markdown Files
+
+`readme.md` file describing the basics of
+
+`report.md` final version of our writeup
+
+`extensions.md` file describing the extensions implemented and their performance
